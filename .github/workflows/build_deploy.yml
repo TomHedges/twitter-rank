@@ -13,8 +13,8 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 16
-          cache: 'yarn'
-      - name: Install and Build 🔧 
+          cache: "yarn"
+      - name: Install and Build 🔧
         run: |
           yarn install
           yarn build
@@ -26,4 +26,4 @@ jobs:
           # use the generated token to autheticate the action
           git remote set-url origin https://tomhedges:${ACCESS_TOKEN}@github.com/tomhedges/twitter-rank.git 
           # split of the subtree at frontend/dist (or wherever your frontend is located) and force push it to the gh-pages branch
-          git push origin `git subtree split --prefix public master`:published --force
+          git push origin `git subtree split --prefix public main`:published --force
