@@ -22,7 +22,7 @@ jobs:
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: |
-          sed -i '' '/dist/d' .gitignore
+          sed -i '/dist/d' .gitignore
           cp public/index.html /dist
           git stash save
           git checkout published
