@@ -26,7 +26,7 @@ jobs:
           cp public/index.html dist
           git stash save
           git remote set-url origin https://tomhedges:${ACCESS_TOKEN}@github.com/tomhedges/twitter-rank.git
-          git pull origin published --ff-only
+          git pull
           git checkout published
           git stash pop
           mkdir todelete
