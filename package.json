@@ -2,7 +2,7 @@
   "name": "twitter-rank",
   "license": "ISC",
   "scripts": {
-    "build": "esbuild src/app.tsx --bundle --minify --sourcemap --outfile=public/bundle.js"
+    "build": "esbuild src/app.tsx --bundle --minify --sourcemap --outfile=dist/js/bundle.js"
   },
   "dependencies": {
     "react": "^18.2.0",
