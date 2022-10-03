@@ -22,29 +22,15 @@ jobs:
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: |
-          # set -ex
-          # # use the generated token to autheticate the action
-          git remote set-url origin https://TomHedges:${ACCESS_TOKEN}@github.com/TomHedges/twitter-rank.git 
-          # # split of the subtree at frontend/dist (or wherever your frontend is located) and force push it to the gh-pages branch
-          # git push origin `git subtree split --prefix public gh-pages-config-test`:published --force
-          # just to get us all at the same starting point
-          #
-          # delete your build folder
-          rm -rf dist/
-          # create a 'build' directory checked out to the published branch
-          git worktree add -B published dist origin/published
-          # build the project
-          yarn build
-          # cd into 'build' folder, which is now on the published branch
-          cd dist
-          # fail if for some reason this isn't the published branch
-          current_branch=$(git symbolic-ref --short -q HEAD)
-          if [ "$current_branch" != "published" ]; then
-            echo "Expected dist folder to be on published branch."
-            exit 1
-          fi
-          # change .gitignore
-          # sed -i '' '/dist/d' .gitignore
-          # commit and push to published
-          git add . && git commit -m "Update published site"
+          sed -i '' '/dist/d' .gitignore
+          cp public/index.html /dist
+          git stash save
+          git checkout published
+          git stash pop
+          mkdir todelete
+          mv * todelete/
+          mv todelete/dist/* .
+          rm -rf todelete
+          git add .
+          git commit -m "Update published site"
           git push
