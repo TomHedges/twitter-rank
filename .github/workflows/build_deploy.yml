@@ -9,6 +9,9 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
       - name: Use Node.js 16
         uses: actions/setup-node@v2
         with:
@@ -19,14 +22,10 @@ jobs:
           yarn install
           yarn build
       - name: Deploy 🚀
-        env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: |
           sed -i '/dist/d' .gitignore
           cp public/index.html dist
           git stash save
-          git remote set-url origin https://tomhedges:${ACCESS_TOKEN}@github.com/tomhedges/twitter-rank.git
-          git pull
           git checkout published
           git stash pop
           mkdir todelete
