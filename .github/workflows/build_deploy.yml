@@ -28,10 +28,10 @@ jobs:
           git stash save
           git checkout published
           git stash pop
-          mkdir todelete
-          mv * todelete/
-          mv todelete/dist/* .
-          rm -rf todelete
+          shopt -s extglob
+          rm -rf !(dist)
+          mv dist/* .
+          rm -rf dist
           git add .
           git commit -m "Update published site"
           git push
