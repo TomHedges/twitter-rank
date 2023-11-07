@@ -23,7 +23,9 @@ jobs:
           yarn build
       - name: Deploy 🚀
         run: |
-          echo "test : $GITHUB_HEAD_REF"
+          echo "GITHUB_HEAD_REF : $GITHUB_HEAD_REF"
+          echo "GITHUB_REF_NAME : $GITHUB_REF_NAME"
+          echo "GITHUB_REF : $GITHUB_REF"
           # sed -i '/dist/d' .gitignore
           # cp public/index.html dist
           # git stash save
