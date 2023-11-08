@@ -27,7 +27,7 @@ jobs:
           echo "GITHUB_REF_NAME : $GITHUB_REF_NAME"
           echo "GITHUB_REF : $GITHUB_REF"
           git branch --list
-          git checkout published
+          git checkout main
           git merge --squash "$GITHUB_REF_NAME"
           git commit -m 'Merge in branch "$GITHUB_REF_NAME"'
           # sed -i '/dist/d' .gitignore
