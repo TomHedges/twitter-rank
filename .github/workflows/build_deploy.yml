@@ -8,12 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          persist-credentials: false
+          # persist-credentials: false
           fetch-depth: 0
       - name: Use Node.js 16
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 16
           cache: "yarn"
@@ -26,6 +26,7 @@ jobs:
           echo "GITHUB_HEAD_REF : $GITHUB_HEAD_REF"
           echo "GITHUB_REF_NAME : $GITHUB_REF_NAME"
           echo "GITHUB_REF : $GITHUB_REF"
+          git branch --list
           git checkout published
           git merge --squash "$GITHUB_REF_NAME"
           git commit -m 'Merge in branch "$GITHUB_REF_NAME"'
