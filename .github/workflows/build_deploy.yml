@@ -26,6 +26,9 @@ jobs:
           echo "GITHUB_HEAD_REF : $GITHUB_HEAD_REF"
           echo "GITHUB_REF_NAME : $GITHUB_REF_NAME"
           echo "GITHUB_REF : $GITHUB_REF"
+          git checkout published
+          git merge --squash "$GITHUB_REF_NAME"
+          git commit -m 'Merge in branch "$GITHUB_REF_NAME"'
           # sed -i '/dist/d' .gitignore
           # cp public/index.html dist
           # git stash save
