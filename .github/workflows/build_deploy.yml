@@ -2,7 +2,7 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - gh-pages-config-test
+      - main
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -10,7 +10,6 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
         with:
-          # persist-credentials: false
           fetch-depth: 0
       - name: Use Node.js 16
         uses: actions/setup-node@v3
@@ -30,11 +29,8 @@ jobs:
           git config --global user.name AutoDeploy
           cp -R ./dist ./temp_copy
           git checkout published
-          ls
           shopt -s extglob
           rm -rf !(temp_copy)
-          # find . -mindepth 1 ! -regextype posix-extended -regex '^\.\/(\.git|temp_copy).*'
-          ls
           mv ./temp_copy/* .
           rm -rf temp_copy
           git add .
