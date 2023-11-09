@@ -23,16 +23,17 @@ jobs:
           yarn build
       - name: Deploy 🚀
         run: |
-          echo "GITHUB_HEAD_REF : $GITHUB_HEAD_REF"
-          echo "GITHUB_REF_NAME : $GITHUB_REF_NAME"
-          echo "GITHUB_REF : $GITHUB_REF"
-          git config --global user.email deploy@tomhedges.com
-          git config --global user.name DeployBot
-          git branch --list
-          git checkout main
-          git merge --squash "$GITHUB_REF_NAME"
-          git commit -m 'Merge in branch "$GITHUB_REF_NAME"'
-          git push
+          # echo "GITHUB_HEAD_REF : $GITHUB_HEAD_REF"
+          # echo "GITHUB_REF_NAME : $GITHUB_REF_NAME"
+          # echo "GITHUB_REF : $GITHUB_REF"
+          # git config --global user.email deploy@tomhedges.com
+          # git config --global user.name DeployBot
+          # git branch --list
+          # git checkout main
+          # git merge --squash "$GITHUB_REF_NAME"
+          # git commit -m 'Merge in branch "$GITHUB_REF_NAME"'
+          # git push
+
           # sed -i '/dist/d' .gitignore
           # cp public/index.html dist
           # git stash save
@@ -45,3 +46,12 @@ jobs:
           # git add .
           # git commit -m "Update published site"
           # git push
+
+          cp -R ./dist ./temp_copy
+          git checkout published
+          mv ./temp_copy/* .
+          rm -rf temp_copy
+          git add .
+          git commit -m "Update published site"
+          git push
+
