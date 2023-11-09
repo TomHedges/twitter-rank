@@ -31,7 +31,7 @@ jobs:
           cp -R ./dist ./temp_copy
           git checkout published
           # rm -rf !(temp_copy)
-          find -E . -mindepth 1 ! -regex '^\.\/(\.git|temp_copy).*'
+          find . -mindepth 1 ! -regex '^\.\/(\.git|temp_copy).*'
           mv ./temp_copy/* .
           rm -rf temp_copy
           git add .
