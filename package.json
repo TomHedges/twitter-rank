@@ -2,7 +2,8 @@
   "name": "twitter-rank",
   "license": "ISC",
   "scripts": {
-    "build": "esbuild src/app.tsx --bundle --minify --sourcemap --outfile=dist/js/bundle.js"
+    "build": "esbuild src/app.tsx --bundle --minify --sourcemap --outfile=dist/app.js && cp ./src/index.html ./dist",
+    "serve": "esbuild src/index.html src/app.tsx --bundle --minify --sourcemap --watch --outdir=dist --servedir=dist --loader:.html=copy --inject:config/livereload.js"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -11,7 +12,7 @@
   "devDependencies": {
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
-    "esbuild": "^0.15.10",
+    "esbuild": "^0.19.5",
     "typescript": "^4.8.4"
   }
 }

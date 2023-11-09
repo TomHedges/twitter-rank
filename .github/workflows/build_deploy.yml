@@ -2,7 +2,7 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - gh-pages-config-test
+      - main
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -10,7 +10,6 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
         with:
-          # persist-credentials: false
           fetch-depth: 0
       - name: Use Node.js 16
         uses: actions/setup-node@v3
@@ -26,22 +25,14 @@ jobs:
           echo "GITHUB_HEAD_REF : $GITHUB_HEAD_REF"
           echo "GITHUB_REF_NAME : $GITHUB_REF_NAME"
           echo "GITHUB_REF : $GITHUB_REF"
-          git config --global user.email deploy@tomhedges.com
-          git config --global user.name DeployBot
-          git branch --list
-          git checkout main
-          git merge --squash "$GITHUB_REF_NAME"
-          git commit -m 'Merge in branch "$GITHUB_REF_NAME"'
+          git config --global user.email deploy@deploy.com
+          git config --global user.name AutoDeploy
+          cp -R ./dist ./temp_copy
+          git checkout published
+          shopt -s extglob
+          rm -rf !(temp_copy)
+          mv ./temp_copy/* .
+          rm -rf temp_copy
+          git add .
+          git commit -m "Update published site from branch: $GITHUB_REF_NAME"
           git push
-          # sed -i '/dist/d' .gitignore
-          # cp public/index.html dist
-          # git stash save
-          # git checkout published
-          # git stash pop
-          # shopt -s extglob
-          # rm -rf !(dist)
-          # mv dist/* .
-          # rm -rf dist
-          # git add .
-          # git commit -m "Update published site"
-          # git push
