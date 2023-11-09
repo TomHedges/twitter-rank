@@ -31,6 +31,7 @@ jobs:
           cp -R ./dist ./temp_copy
           git checkout published
           ls
+          shopt -s extglob
           rm -rf !(temp_copy)
           # find . -mindepth 1 ! -regextype posix-extended -regex '^\.\/(\.git|temp_copy).*'
           ls
