@@ -22,9 +22,7 @@ jobs:
           yarn build
       - name: Deploy 🚀
         run: |
-          echo "GITHUB_HEAD_REF : $GITHUB_HEAD_REF"
-          echo "GITHUB_REF_NAME : $GITHUB_REF_NAME"
-          echo "GITHUB_REF : $GITHUB_REF"
+          commit_msg="$(git log -1 --pretty=%B)"
           git config --global user.email deploy@deploy.com
           git config --global user.name AutoDeploy
           cp -R ./dist ./temp_copy
@@ -34,5 +32,5 @@ jobs:
           mv ./temp_copy/* .
           rm -rf temp_copy
           git add .
-          git commit -m "Update published site from branch: $GITHUB_REF_NAME"
+          git commit -m "Update published site from branch: $commit_msg"
           git push
