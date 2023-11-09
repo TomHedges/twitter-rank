@@ -2,7 +2,7 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - update-gh-publish-logic
+      - main
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -22,9 +22,7 @@ jobs:
           yarn build
       - name: Deploy 🚀
         run: |
-          echo git log -1 --pretty=%B
           commit_msg="$(git log -1 --pretty=%B)"
-          echo $commit_msg
           git config --global user.email deploy@deploy.com
           git config --global user.name AutoDeploy
           cp -R ./dist ./temp_copy
