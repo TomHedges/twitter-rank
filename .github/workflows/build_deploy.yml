@@ -36,4 +36,3 @@ jobs:
           git add .
           git commit -m "Update published site from branch: $GITHUB_REF_NAME"
           git push
-
