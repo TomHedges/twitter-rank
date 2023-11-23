@@ -32,8 +32,6 @@ jobs:
           mv ./temp_copy/* .
           rm -rf temp_copy
           git add .
-          # NUM_CHANGED_FILES=(git diff --cached --numstat | wc -l)
-          # echo $NUM_CHANGED_FILES
           echo "NUM_CHANGED_FILES=0" >> "$GITHUB_ENV"
       - name: Deploy 🚀
         if: ${{ fromJSON('$NUM_CHANGED_FILES') >= 1 }}
