@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["vanilla-extract-css-ns:src/app.css.ts.vanilla.css?source=Ym9keSB7CiAgZm9udC1mYW1pbHk6IHNhbnMtc2VyaWY7Cn0KLl84ejlrNzAgewogIGJhY2tncm91bmQtY29sb3I6ICNlZWVlZWU7CiAgcGFkZGluZzogMTBweDsKfQouXzh6OWs3MSB7CiAgY29sb3I6IGdyZWVuOwp9"],
+  "sourcesContent": ["body {\n  font-family: sans-serif;\n}\n._8z9k70 {\n  background-color: #eeeeee;\n  padding: 10px;\n}\n._8z9k71 {\n  color: green;\n}"],
+  "mappings": "AAAA,KACE,YAAa,UACf,CACA,CAAC,QACC,iBAAkB,KAJpB,QAKW,IACX,CACA,CAAC,QACC,MAAO,KACT",
+  "names": []
+}
