@@ -32,5 +32,5 @@ jobs:
           mv ./temp_copy/* .
           rm -rf temp_copy
           git add .
-          git commit -m "Update published site from branch: $commit_msg"
+          git commit -m "Update published to site: $commit_msg"
           git push
