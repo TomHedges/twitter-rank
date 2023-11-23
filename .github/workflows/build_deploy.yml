@@ -32,9 +32,12 @@ jobs:
           mv ./temp_copy/* .
           rm -rf temp_copy
           git add .
-          echo "NUM_CHANGED_FILES=0" >> "$GITHUB_ENV"
+          echo "NUM_CHANGED_FILES=1" >> "$GITHUB_ENV"
+          echo $NUM_CHANGED_FILES
+          echo $env.NUM_CHANGED_FILES
       - name: Deploy 🚀
         if: fromJSON(env.NUM_CHANGED_FILES) >= 1
         run: |
-          git commit -m "Update published site from branch: $commit_msg"
-          git push
+          echo SUCCESS
+          # git commit -m "Update published site from branch: $commit_msg"
+          # git push
