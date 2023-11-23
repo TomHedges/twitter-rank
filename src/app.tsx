@@ -1,14 +1,18 @@
+import { container, h1 } from './app.css.ts';
+
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from 'react-dom/client';
 
 const App = () => {
   return (
-    <>
-      <h1>Hello, World!</h1>
+    <div className={container}>
+      <h1 className={h1}>Hello, World!</h1>
       <h2>twitter-rank</h2>
-      <p>Test  3</p>
-    </>
+      <p>Test: 1</p>
+    </div>
   );
 };
 
-ReactDOM.render(<App />, document.getElementById("root"));
+const reactContainer = document.getElementById('root');
+const root = createRoot(reactContainer!);
+root.render(<App  />);
