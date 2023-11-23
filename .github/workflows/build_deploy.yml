@@ -34,7 +34,7 @@ jobs:
           git add .
           echo "NUM_CHANGED_FILES=0" >> "$GITHUB_ENV"
       - name: Deploy 🚀
-        if: ${{ fromJSON('$NUM_CHANGED_FILES') >= 1 }}
+        if: fromJSON('$NUM_CHANGED_FILES') >= 1
         run: |
           git commit -m "Update published site from branch: $commit_msg"
           git push
