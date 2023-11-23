@@ -1,8 +1,8 @@
 name: Build and Deploy
 on:
   push:
-    # branches:
-    #   - main
+    branches:
+      - main
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -20,7 +20,7 @@ jobs:
         run: |
           yarn install
           yarn build
-      - name: Check for changes to site files 🚀
+      - name: Check for changes to site files
         run: |
           commit_msg="$(git log -1 --pretty=%B)"
           git config --global user.email deploy@deploy.com
@@ -36,6 +36,5 @@ jobs:
       - name: Deploy 🚀
         if: fromJSON(env.NUM_CHANGED_FILES) >= 1
         run: |
-          echo SUCCESS
-          # git commit -m "Update published site from branch: $commit_msg"
-          # git push
+          git commit -m "Update published site from branch: $commit_msg"
+          git push
